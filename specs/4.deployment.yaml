@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-wand
+  namespace: deploy-wand
+spec:
+  selector:
+    matchLabels:
+      app: deploy-wand
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: deploy-wand
+    spec:
+      containers:
+      - name: deploy-wand
+        image: deploy-wand:0.2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: grimoire-configmap
+          mountPath: /grimoire-config
+
+      volumes:
+      - name: grimoire-configmap
+        configMap:
+          name: grimoire-configmap

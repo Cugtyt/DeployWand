@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grimoire-configmap
+  namespace: deploy-wand
+data:
+  tag: "3"
